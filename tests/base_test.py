@@ -4,6 +4,8 @@ from time import sleep
 from appium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+
+from locators import MainActivityLocators
 from pages.main_activity_page import MainActivity
 from tests.test_utils import TestUtils
 
@@ -49,8 +51,8 @@ class BaseTest(unittest.TestCase):
         # self.ia = InfoActivity(self.driver)
 
     def __dismiss_splash_window(self):
-        """ Clicks on OK to unlock Main Activity """
-        """ Note: OK button may not be visible on some devices, therefore scrolling """
+        """ Clicks on STARTUJ button to unlock Main Activity """
+        """ Note: STARTUJ button may not be visible on some devices, therefore scrolling """
 
         x, y = TestUtils.get_screen_dimensions(self.driver)
         # speeding up a little:
@@ -66,7 +68,6 @@ class BaseTest(unittest.TestCase):
                 self.driver.swipe(x/2, y/2, x/2, y/7, 500)
         # restoring timeout:
         self.driver.implicitly_wait(TestUtils.WAIT_TIME)
-
 
     def tearDown(self):
         print("tearDown z BaseTest")
