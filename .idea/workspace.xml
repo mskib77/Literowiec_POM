@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45c742d4-b230-4b18-9f4b-969d90035ce6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/screenshots/empty.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locators.py" beforeDir="false" afterPath="$PROJECT_DIR$/locators.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/main_activity_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/main_activity_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Literowiec.apk" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Literowiec.apk" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/Literowiec.apk.idsig" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Literowiec.apk.idsig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/base_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/base_test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/tests_on_main_activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests_on_main_activity.py" afterDir="false" />
     </list>
@@ -106,7 +104,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests_on_main_activity.MainActivityTest.test_podnies_upper" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests_on_main_activity.MainActivityTest.test_testuj" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Literowiec_POM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -116,7 +114,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_on_main_activity.MainActivityTest.test_podnies_upper&quot;" />
+      <option name="_new_target" value="&quot;tests_on_main_activity.MainActivityTest.test_testuj&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -151,10 +149,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Unittests in tests_on_main_activity.py" />
+        <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_testuj" />
         <item itemvalue="Python.main_activity_page" />
         <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_wypisuj_co_widzisz" />
         <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_daj_glos" />
-        <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_podnies_upper" />
       </list>
     </recent_temporary>
   </component>
@@ -179,5 +177,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/pages/main_activity_page.py</url>
+          <line>59</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

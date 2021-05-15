@@ -1,12 +1,13 @@
 import unittest
 from time import sleep
 
+from ddt import ddt, data
 from selenium.common.exceptions import NoSuchElementException
 
 from tests.base_test import BaseTest
 from tests.test_utils import TestUtils
 
-
+@ddt
 class MainActivityTest(BaseTest):
 
     @unittest.skip
@@ -28,12 +29,13 @@ class MainActivityTest(BaseTest):
         btn.click()
         sleep(1)
 
+    @unittest.skip
     def test_wypisuj_co_widzisz(self):
         ma = self.ma
         nazwa = ma.get_nazwa_field().text
         print(f"Pod obrazkiem widzę: {nazwa}")
 
-        all_labels_list = TestUtils.prepare_list_of_all_labels_ids()
+        all_labels_list = TestUtils.prepare_list_of_all_ids_of_labels()
 
         print(all_labels_list, len(all_labels_list))
 
@@ -50,3 +52,10 @@ class MainActivityTest(BaseTest):
         self.driver.implicitly_wait(TestUtils.WAIT_TIME)
         print("labels_shown:")
         print(labels_shown, len(labels_shown))
+
+    @data(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+    def test_testuj(self, dummy):
+        ma = self.ma
+        word = ma.get_nazwa_field().text
+        ma.get_ordered_list_of_shown_labels(word)
+        sleep(1)
