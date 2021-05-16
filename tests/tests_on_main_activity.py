@@ -2,6 +2,9 @@ import unittest
 from time import sleep
 
 from appium.webdriver.common.touch_action import TouchAction
+
+from appium.webdriver.common.multi_action import MultiAction
+
 from ddt import ddt, data
 from selenium.common.exceptions import NoSuchElementException
 
@@ -62,7 +65,7 @@ class MainActivityTest(BaseTest):
     def test_testuj(self, dummy):
         ma = self.ma
         word = ma.get_nazwa_field().text
-        ma.get_ordered_list_of_shown_labels(word)
+        ma.get_ordered_list_of_ids_of_shown_labels(word)
         sleep(1)
 
     @unittest.skip
@@ -70,7 +73,7 @@ class MainActivityTest(BaseTest):
         ma = self.ma
         word = ma.get_nazwa_field().text
         polozenie = ma.get_nazwa_field()
-        l_list = ma.get_ordered_list_of_shown_labels(word)
+        l_list = ma.get_ordered_list_of_ids_of_shown_labels(word)
         (x, y) = TestUtils.get_screen_dimensions(self.driver)
         x = x/2
         # label to drag:
@@ -101,7 +104,7 @@ class MainActivityTest(BaseTest):
     def test_test_draguj2(self):
         ma = self.ma
         word = ma.get_nazwa_field().text
-        l_list = ma.get_ordered_list_of_shown_labels(word)
+        l_list = ma.get_ordered_list_of_ids_of_shown_labels(word)
         # element to drag:
         ltd = self.driver.find_element_by_id(l_list[0])
         action = TouchAction(self.driver)
@@ -115,17 +118,17 @@ class MainActivityTest(BaseTest):
     def test_build_the_word(self):
         ma = self.ma
         word = ma.get_nazwa_field().text
-        l_list = ma.get_ordered_list_of_shown_labels(word)
-        x_curr = -50
+        l_list = ma.get_ordered_list_of_ids_of_shown_labels(word)
+        x_curr = -80
         dx = 150
         y0 = 740
         for id_el in l_list:
-            # ltd - label to drag
+            # ltd - label to drag:
             ltd = self.driver.find_element_by_id(id_el)
             action = TouchAction(self.driver)
             x_curr += dx
-            # action.long_press(ltd).wait(200).move_to(x=x_curr, y=y0).perform().release()
             action.press(ltd).wait(200).move_to(x=x_curr, y=y0).perform().release()
+            ltd.click()     # trick - REALLY releases touch on element
             sleep(0.2)
         sleep(15)
 

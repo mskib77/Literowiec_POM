@@ -55,7 +55,7 @@ class MainActivity():
                 return i
         return -1
 
-    def get_ordered_list_of_shown_labels(self, word):
+    def get_ordered_list_of_ids_of_shown_labels(self, word):
         """Returns the list of IDs of all visible labels (=letters)"""
         """The returned list is of the same sequence as the letters in 'word' are. """
         result = []
@@ -65,13 +65,9 @@ class MainActivity():
         for letter in word:
             idx = self.__get_first_index_of_an_elem_containing_letter(ul, letter)
             result.append(ul[idx])
-            # The element just found MUST be removed from the list, otherwise if the word contains many same
-            # letters, only the first one would be kept finding:
+            # The element just found MUST be removed from the list, otherwise if the word contains more same
+            # letters, only the first letter (=label) would be kept finding:
             ul.pop(idx)
         return result
-        # print(result)
-        # for x in result:
-        #     labelka = self.driver.find_element_by_id(x)
-        #     print(labelka.text)
 
 
