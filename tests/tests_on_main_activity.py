@@ -1,9 +1,11 @@
 import unittest
 from time import sleep
 
+from appium.webdriver.common.touch_action import TouchAction
 from ddt import ddt, data
 from selenium.common.exceptions import NoSuchElementException
 
+from locators import MainActivityLocators
 from tests.base_test import BaseTest
 from tests.test_utils import TestUtils
 
@@ -31,11 +33,13 @@ class MainActivityTest(BaseTest):
 
     @unittest.skip
     def test_wypisuj_co_widzisz(self):
+        sleep(1)
         ma = self.ma
+        sleep(3)
         nazwa = ma.get_nazwa_field().text
         print(f"Pod obrazkiem widzę: {nazwa}")
 
-        all_labels_list = TestUtils.prepare_list_of_all_ids_of_labels()
+        all_labels_list = MainActivityLocators.ALL_LABELS_IDS
 
         print(all_labels_list, len(all_labels_list))
 
@@ -53,9 +57,24 @@ class MainActivityTest(BaseTest):
         print("labels_shown:")
         print(labels_shown, len(labels_shown))
 
-    @data(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+    @unittest.skip
+    # @data(1)
     def test_testuj(self, dummy):
         ma = self.ma
         word = ma.get_nazwa_field().text
         ma.get_ordered_list_of_shown_labels(word)
         sleep(1)
+
+    def test_draging_first_letter(self):
+        ma = self.ma
+        word = ma.get_nazwa_field().text
+        polozenie = ma.get_nazwa_field()
+        l_list = ma.get_ordered_list_of_shown_labels(word)
+        # label to drag:
+        ltd = self.driver.find_element_by_id(l_list[0])
+
+        action = TouchAction(self.driver);
+        # action.long_press(ltd).wait(200).move_to(polozenie).perform().release() - to dziala!
+        action.long_press(ltd).wait(200).move_to(x=200, y=200).perform().release()
+        sleep(4)
+        # action.longPress(elem1).waitAction(3000).moveTo(elem2).perform().release();

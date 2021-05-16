@@ -28,22 +28,24 @@ class MainActivity():
         nazwa = self.driver.find_element(*MainActivityLocators.NAZWA)
         return nazwa
 
-    def __get_unordered_list_of_shown_labels(self):
-        all_labels = TestUtils.prepare_list_of_all_ids_of_labels()
-        # speeding up, because it is normal not to find an 30invisible label
+    def __get_unordered_list_of_shown_labels(self, all_labels_ids):
+        """Returns a list of ids of labels (=letters) shown on the screen"""
+        """Does it by filtering out invisible labels from all_labels_ids list"""
+
+        # speeding up, because it is normal not to find an invisible label
         self.driver.implicitly_wait(0.2)
-        labels_shown = []
-        for label in all_labels:
+        ids_of_labels_shown = []
+        for id in all_labels_ids:
             try:
-                found = self.driver.find_element_by_id(label)
-                labels_shown.append(label)
+                found = self.driver.find_element_by_id(id)
+                ids_of_labels_shown.append(id)
             except NoSuchElementException:
                 pass
         # restoring timeout:
         self.driver.implicitly_wait(TestUtils.WAIT_TIME)
-        print("labels_shown:")
-        print(labels_shown, len(labels_shown))
-        return labels_shown
+        # print("ids_of_labels_shown:")
+        # print(ids_of_labels_shown, len(ids_of_labels_shown))
+        return ids_of_labels_shown
 
     def __get_first_index_of_an_elem_containing_letter(self, lista, litera):
         dl = len(lista)
@@ -54,16 +56,22 @@ class MainActivity():
         return -1
 
     def get_ordered_list_of_shown_labels(self, word):
+        """Returns the list of IDs of all visible labels (=letters)"""
+        """The returned list is of the same sequence as the letters in 'word' are. """
         result = []
-        ul = self.__get_unordered_list_of_shown_labels()
-        # ul1 = MainActivityLocators.ALL_LABELS_LIST
+        ul = self.__get_unordered_list_of_shown_labels(MainActivityLocators.ALL_LABELS_IDS)
+        # Iterating through 'word' (from left to right) guarantees that the resultant list
+        # will have the same sequence as the letters in 'word'
         for letter in word:
-            indx = self.__get_first_index_of_an_elem_containing_letter(ul, letter)   #ul.index(letter)
-            result.append(ul[indx])
-            ul.__delitem__(indx)
-        print(result)
-        for x in result:
-            labelka = self.driver.find_element_by_id(x)
-            print(labelka.text)
+            idx = self.__get_first_index_of_an_elem_containing_letter(ul, letter)
+            result.append(ul[idx])
+            # The element just found MUST be removed from the list, otherwise if the word contains many same
+            # letters, only the first one would be kept finding:
+            ul.pop(idx)
+        return result
+        # print(result)
+        # for x in result:
+        #     labelka = self.driver.find_element_by_id(x)
+        #     print(labelka.text)
 
 
