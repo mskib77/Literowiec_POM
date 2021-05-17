@@ -34,6 +34,8 @@ class MainActivity():
 
         # speeding up, because it is normal not to find an invisible label
         self.driver.implicitly_wait(0.2)
+        # Trying to find labels on the screen; if not found - that's ok, it is simply not used
+        # (eg. the guessed Word is too short etc.):
         ids_of_labels_shown = []
         for id in all_labels_ids:
             try:
@@ -52,8 +54,11 @@ class MainActivity():
         for i in range(0, dl):
             zawartosc = self.driver.find_element_by_id(lista[i]).text
             if zawartosc == litera:
-                return i
-        return -1
+                pass
+                # return i
+        raise Exception(
+            "\nError in function MainActivity.__get_first_index_of_an_elem_containing_letter(self, lista, litera)"
+            "\nIndex not found")
 
     def get_ordered_list_of_ids_of_shown_labels(self, word):
         """Returns the list of IDs of all visible labels (=letters)"""
@@ -69,5 +74,15 @@ class MainActivity():
             # letters, only the first letter (=label) would be kept finding:
             ul.pop(idx)
         return result
+
+    def get_word_built(self):
+        try:
+            wb = self.driver.find_element(MainActivityLocators.WORD_BUILT)
+            return wb
+        except NoSuchElementException:
+            return -1
+        
+
+
 
 

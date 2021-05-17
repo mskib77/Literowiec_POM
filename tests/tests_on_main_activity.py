@@ -116,13 +116,19 @@ class MainActivityTest(BaseTest):
         sleep(1)
 
     def test_build_the_word(self):
+        """Passed if:
+        1. There appears element WORD_BUILT containing the word we built from the labbels/letters AND
+        2. WORD_BUILT properly describes the picture AND
+        3. There appears a big button with green arrow on it
+        """
+
         ma = self.ma
         word = ma.get_nazwa_field().text
-        l_list = ma.get_ordered_list_of_ids_of_shown_labels(word)
+        labels_list = ma.get_ordered_list_of_ids_of_shown_labels(word)
         x_curr = -80
         dx = 150
         y0 = 740
-        for id_el in l_list:
+        for id_el in labels_list:
             # ltd - label to drag:
             ltd = self.driver.find_element_by_id(id_el)
             action = TouchAction(self.driver)
@@ -130,7 +136,8 @@ class MainActivityTest(BaseTest):
             action.press(ltd).wait(200).move_to(x=x_curr, y=y0).perform().release()
             ltd.click()     # trick - REALLY releases touch on element
             sleep(0.2)
-        sleep(15)
+        sleep(2)
+
 
 
 
