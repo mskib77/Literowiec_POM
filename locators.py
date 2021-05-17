@@ -5,6 +5,7 @@ class MainActivityLocators:
     IMAGE = (By.ID, 'autyzmsoft.pl.literowiec:id/imageView')
     NAZWA = (By.ID, 'autyzmsoft.pl.literowiec:id/tvNazwa')
     BUPPLOW = (By.ID, 'autyzmsoft.pl.literowiec:id/bUpperLower')
+    BDALEJ = (By.ID, 'autyzmsoft.pl.literowiec:id/bDalej')
 
     L00_str = 'autyzmsoft.pl.literowiec:id/L00'
     L01_str = 'autyzmsoft.pl.literowiec:id/L01'
@@ -25,4 +26,6 @@ class MainActivityLocators:
                       L06_str, L07_str, L08_str, L09_str, L10_str, L11_str]
 
     # Word that appears in the 'red' box AFTER (only) we correctly did the puzzle:
-    WORD_BUILT = (By.ID, 'autyzmsoft.pl.literowiec:id/tvShownWord');
+    WORD_BUILT = (By.ID, 'autyzmsoft.pl.literowiec:id/tvShownWord')
+
+

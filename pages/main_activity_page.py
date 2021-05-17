@@ -5,7 +5,7 @@ from locators import MainActivityLocators
 from tests.test_utils import TestUtils
 
 
-class MainActivity():
+class MainActivity:
 
     def __init__(self, sterownik):
         self.driver = sterownik
@@ -15,10 +15,6 @@ class MainActivity():
         action = TouchAction(self.driver)
         image = self.driver.find_element(*MainActivityLocators.IMAGE)
         action.long_press(image).perform()
-
-    def click_on_image(self):
-        image = self.driver.find_element(*MainActivityLocators.IMAGE)
-        image.click()
 
     def get_upper_lower_button(self):
         btn = self.driver.find_element(*MainActivityLocators.BUPPLOW)
@@ -34,8 +30,8 @@ class MainActivity():
 
         # speeding up, because it is normal not to find an invisible label
         self.driver.implicitly_wait(0.2)
-        # Trying to find labels on the screen; if not found - that's ok, it is simply not used
-        # (eg. the guessed Word is too short etc.):
+        # Trying to find labels on the screen; if not found - that's ok, it is simply not used so it's invisible
+        # (eg. the guessed Word is too short to occupy all the labels etc.):
         ids_of_labels_shown = []
         for id in all_labels_ids:
             try:
@@ -45,8 +41,6 @@ class MainActivity():
                 pass
         # restoring timeout:
         self.driver.implicitly_wait(TestUtils.WAIT_TIME)
-        # print("ids_of_labels_shown:")
-        # print(ids_of_labels_shown, len(ids_of_labels_shown))
         return ids_of_labels_shown
 
     def __get_first_index_of_an_elem_containing_letter(self, lista, litera):
@@ -55,7 +49,7 @@ class MainActivity():
             zawartosc = self.driver.find_element_by_id(lista[i]).text
             if zawartosc == litera:
                 pass
-                # return i
+                return i
         raise Exception(
             "\nError in function MainActivity.__get_first_index_of_an_elem_containing_letter(self, lista, litera)"
             "\nIndex not found")
@@ -77,11 +71,19 @@ class MainActivity():
 
     def get_word_built(self):
         try:
-            wb = self.driver.find_element(MainActivityLocators.WORD_BUILT)
+            wb = self.driver.find_element(*MainActivityLocators.WORD_BUILT)
             return wb
         except NoSuchElementException:
             return -1
-        
+
+    def get_bdalej_button(self):
+        try:
+            btn = self.driver.find_element(*MainActivityLocators.BDALEJ)
+            return btn
+        except NoSuchElementException:
+            return -1
+
+
 
 
 
