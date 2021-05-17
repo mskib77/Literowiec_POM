@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="45c742d4-b230-4b18-9f4b-969d90035ce6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/locators.py" beforeDir="false" afterPath="$PROJECT_DIR$/locators.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/main_activity_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/main_activity_page.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/tests_on_main_activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests_on_main_activity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -146,8 +144,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python tests.Unittests in tests_on_main_activity.py" />
-        <item itemvalue="Python.main_activity_page" />
         <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_build_the_word" />
+        <item itemvalue="Python.main_activity_page" />
         <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_test_draguj2" />
         <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_draging_first_letter" />
       </list>

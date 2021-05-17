@@ -1,9 +1,11 @@
 import unittest
+from random import randint
 from time import sleep
 from appium.webdriver.common.touch_action import TouchAction
 from ddt import ddt, data
 from tests.base_test import BaseTest
 from tests.test_utils import TestUtils
+
 
 @ddt
 class MainActivityTest(BaseTest):
@@ -47,21 +49,29 @@ class MainActivityTest(BaseTest):
         ma = self.ma
         word = ma.get_nazwa_field().text
         labels_list = ma.get_ordered_list_of_ids_of_shown_labels(word)
-        x_curr = -80
-        dx = 150
+        x_curr = -20
         y0 = 740
-        l_width = -1
+        l_width_set = False     # label width
         for id_el in labels_list:
             # ltd - label to drag:
             ltd = self.driver.find_element_by_id(id_el)
 
-            if l_width < 0:
-                l_width = ltd.get_attribute("")
+            if not l_width_set:
+                l_Obszar = self.driver.find_element_by_id('autyzmsoft.pl.literowiec:id/l_Obszar')
+                lokacja = l_Obszar.location
+                wymiary = l_Obszar.size
+                print("l_Obszar lokacja:", lokacja)
+                print("l_Obszar wymiary", wymiary)
 
+
+                sizes = ltd.size
+                dx: int = sizes.get('width')
+                print(f"x={dx}")
+                l_width_set = True
 
             action = TouchAction(self.driver)
-            x_curr += dx
-            action.press(ltd).wait(200).move_to(x=x_curr, y=y0).perform().release()
+            x_curr += dx - dx/5
+            action.press(ltd).wait(200).move_to(x=x_curr, y=y0+randint(0,100)).perform().release()
             ltd.click()  # trick - REALLY releases touch on element
             sleep(0.2)
         # Testing conditions No 1:
@@ -98,6 +108,5 @@ class MainActivityTest(BaseTest):
         if not test_ok_2: reasons.append("The word we have build does not describe the picture")
         if not test_ok_3: reasons.append("The button with green arrow did not appear")
 
-        self.assertTrue(test_ok, f"Error in test_build_the_word(self) Reason: {reasons} \nSee picture 'Error while doing the puzzle.png'")
-
-
+        self.assertTrue(test_ok,
+                        f"Error in test_build_the_word(self) Reason: {reasons} \nSee picture 'Error while doing the puzzle.png'")
