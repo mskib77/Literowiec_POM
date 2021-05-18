@@ -74,7 +74,8 @@ class MainActivity:
             wb = self.driver.find_element(*MainActivityLocators.WORD_BUILT)
             return wb
         except NoSuchElementException:
-            return -1
+            # return -1
+            pass
 
     def get_bdalej_button(self):
         try:
@@ -83,8 +84,43 @@ class MainActivity:
         except NoSuchElementException:
             return -1
 
+    def get_dimensions(self, seen_labels_ids):
+        """Returns 'average' label/letter width, left (x0) position of the first letter in the box, (yl) line of trim"""
+        # label/letter with taken as average of 2 first labels (heuristic approach ;))
+        ltd_0 = self.driver.find_element_by_id(seen_labels_ids[0])
+        ltd_1 = self.driver.find_element_by_id(seen_labels_ids[1])
+        sizes_0 = ltd_0.size
+        sizes_1 = ltd_1.size
+        l_width = int((sizes_0.get('width') + sizes_1.get('width'))/2)
+        print(l_width)
+        # left position x0 of the first letter being set and horizontal line of trim (yl):
+        red_box = self.driver.find_element(*MainActivityLocators.OBSZAR)
+        red_box_location = red_box.location
+        red_box_sizes = red_box.size
+        print("red box location: ",red_box_location)
+        print("red box sizes: ",red_box_sizes)
+        print('------- gety-----')
+        print(red_box_location.get('x'))
+        print(red_box_location.get('y'))
+        print('--------------------------------------')
+        print(red_box_sizes.get('width'))
+        print(red_box_sizes.get('height'))
+
+        x0 = red_box_location.get('x')
+        box_h = red_box_sizes.get('height')
+        yl = red_box_location.get('y') + int(0.5*box_h)
+
+        print("x0 l_width yl : ", x0, l_width, yl)
+        return l_width, x0, yl
 
 
 
 
 
+
+'''
+                sizes = ltd.size
+                dx: int = sizes.get('width')
+                print(f"x={dx}")
+                l_width_set = True
+'''

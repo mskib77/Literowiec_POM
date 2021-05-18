@@ -6,6 +6,8 @@ class MainActivityLocators:
     NAZWA = (By.ID, 'autyzmsoft.pl.literowiec:id/tvNazwa')
     BUPPLOW = (By.ID, 'autyzmsoft.pl.literowiec:id/bUpperLower')
     BDALEJ = (By.ID, 'autyzmsoft.pl.literowiec:id/bDalej')
+    OBSZAR = (By.ID, 'autyzmsoft.pl.literowiec:id/l_Obszar')
+    BSHIFT_LEFT = (By.ID, 'autyzmsoft.pl.literowiec:id/bShiftLeft')
 
     L00_str = 'autyzmsoft.pl.literowiec:id/L00'
     L01_str = 'autyzmsoft.pl.literowiec:id/L01'
