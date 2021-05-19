@@ -5,25 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45c742d4-b230-4b18-9f4b-969d90035ce6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/suite_raport.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/main_activity_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/main_activity_page.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/screenshots/2021-05-18_10-00-49_Error while doing the puzzle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/screenshots/2021-05-18_10-20-14_Error while doing the puzzle.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Literowiec.apk" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Literowiec.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Literowiec_Latwe_mozna_uzyc_lub_wywalic.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Literowiec_Trudne_mozna_uzyc_lub_wywalic.apk" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/tests_on_main_activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests_on_main_activity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip-21.0.1.dist-info/INSTALLER" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip-21.0.1.dist-info/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip-21.0.1.dist-info/METADATA" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip-21.0.1.dist-info/RECORD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip-21.0.1.dist-info/WHEEL" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip-21.0.1.dist-info/entry_points.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip-21.0.1.dist-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip/_internal/locations.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip/_internal/utils/typing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip/_vendor/contextlib2.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip/_vendor/pep517/_in_process.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/lib/python3.8/site-packages/pip/_vendor/retrying.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +46,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../profMarcin_POM" />
   </component>
-  <component name="RunManager" selected="Python.suite_raport">
+  <component name="RunManager" selected="Python tests.Unittests in tests_on_main_activity.py">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Literowiec_POM" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -73,27 +60,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main_activity_page" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="Literowiec_POM" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pages" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pages/main_activity_page.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -137,7 +103,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests_on_main_activity.MainActivityTest.test_test_draguj2" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests_on_main_activity.MainActivityTest.test_from_lowercase_to_uppercase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Literowiec_POM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -147,7 +113,21 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_on_main_activity.MainActivityTest.test_test_draguj2&quot;" />
+      <option name="_new_target" value="&quot;tests_on_main_activity.MainActivityTest.test_from_lowercase_to_uppercase&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for tests_on_main_activity.MainActivityTest.test_number_of_labels_is_correct" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="Literowiec_POM" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/tests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;tests_on_main_activity.MainActivityTest.test_number_of_labels_is_correct&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -167,11 +147,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.suite_raport" />
         <item itemvalue="Python tests.Unittests in tests_on_main_activity.py" />
+        <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_from_lowercase_to_uppercase" />
+        <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_number_of_labels_is_correct" />
         <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_build_the_word" />
-        <item itemvalue="Python.main_activity_page" />
-        <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_test_draguj2" />
+        <item itemvalue="Python.suite_raport" />
       </list>
     </recent_temporary>
   </component>

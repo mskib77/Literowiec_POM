@@ -12,21 +12,51 @@ from tests.test_utils import TestUtils
 @ddt
 class MainActivityTest(BaseTest):
 
-    @unittest.skip
-    def test_number_of_letters_is_correct(self):
-        """Passed if number of scattered letters equals word length"""
-        self.ma.long_touch_on_image()
-        sleep(5)
+    def test_number_of_labels_is_correct(self):
+        """ Passed if the number of scattered letters equals the length of the guessed word """
+        ma = self.ma
+        word = ma.get_nazwa_field().text  # the Word to build
+        labels_list = ma.get_unordered_list_of_ids_of_shown_labels(MainActivityLocators.ALL_LABELS_IDS)
+        num_of_letters = len(word)
+        num_of_labels = len(labels_list)
+        test_ok = num_of_labels == num_of_letters
+        if not test_ok:
+            TestUtils.screen_shot(self.driver, "Diffrent numbers of letters and labels")
+        self.assertTrue(test_ok, f"Number of labels ({num_of_labels}) on the screen and number"
+                                 f"of letters ({num_of_letters}) in the word differ. See screenshot. ")
 
-    @unittest.skip
-    def test_podnies_upper(self):
-        sleep(2)
+    # @unittest.skip
+    def test_from_lowercase_to_uppercase(self):
+        ma = self.ma
+        word_1 = ma.get_nazwa_field().text  # the Word to build in lowercase
+        labels_id_list = ma.get_unordered_list_of_ids_of_shown_labels(MainActivityLocators.ALL_LABELS_IDS)
+        labels_list_1 = []  # labels list in lowercase
+        for idi in labels_id_list:
+            labels_list_1.append(self.driver.find_element_by_id(idi))
+        # "Rising" the word and labels:
         btn = self.ma.get_upper_lower_button()
         btn.click()
-        sleep(1)
+        # Checking after the 'rising':
+        word_2 = ma.get_nazwa_field().text  # the Word to build in uppercase
+        labels_id_list = ma.get_unordered_list_of_ids_of_shown_labels(MainActivityLocators.ALL_LABELS_IDS)
+        labels_list_2 = []  # labels list in uppercase
+        for idi in labels_id_list:
+            labels_list_1.append(self.driver.find_element_by_id(idi))
+        # Comparison:
+        test_ok_1 = word_2 == word_1.upper()
+        test_ok_2 = True
+        for i in range(0, len(labels_list_2)):
+            if labels_list_2[i].text != labels_list_1[i].text.upper():
+                test_ok_2 = False
+                break
+        print(test_ok_1)
+        print(test_ok_2)
+        sleep(2)
 
-    @data(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15)  # causes the test to be run 'N' times
-    # @data(1,2)  # causes the test to be run 'N' times
+    # causes the test to be run 'N' times
+    # @data(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39)
+    @data(1, 2, 3)  # causes the test to be run 'N' times
+    # @unittest.skip
     def test_build_the_word(self, placeholder):
         """Wrapper for ddt.
          Real test is in __do_puzle() below
@@ -35,7 +65,7 @@ class MainActivityTest(BaseTest):
 
     def __do_puzzle(self):
         """Passed if:
-        1. There appears element WORD_BUILT containing the word we built manually from the labbels/letters AND
+        1. There appears element WORD_BUILT containing the word we built manually from the labels/letters AND
         2. WORD_BUILT properly describes the picture AND
         3. There appears on the screen a big button with green arrow
         """
@@ -43,10 +73,10 @@ class MainActivityTest(BaseTest):
         word = ma.get_nazwa_field().text  # the Word to build
         labels_list = ma.get_ordered_list_of_ids_of_shown_labels(word)
 
-        print("wykrylem etykiety na:")
-        for ids in labels_list:
-            print(self.driver.find_element_by_id(ids).text, end=" ")
-        print("\n")
+        # print("wykrylem etykiety na:")
+        # for ids in labels_list:
+        #     print(self.driver.find_element_by_id(ids).text, end=" ")
+        # print("\n")
 
         # for i in range(labels_list):
         #     print(self.driver.find_element_by_id(labels_list[i]).text, end=" ")
@@ -63,26 +93,14 @@ class MainActivityTest(BaseTest):
             l_width = int(1.2 * l_width)
         # end of adjustments
 
-        dl = len(labels_list)
-        action_list = []
-        for i in range(0, dl):
-            action_list.append(TouchAction(self.driver))
-
-
-        i = 0
         for id_el in labels_list:
             ltd = self.driver.find_element_by_id(id_el)  # ltd - label to drag
-
-            print("w petli glownej: ", ltd.text)
-
-            # action_list[i] = TouchAction(self.driver)
-            rnd = randint(0,rnd_range)  # for better visual effect ;)
-            action_list[i].press(ltd).wait(300).move_to(x=x_curr, y=yl-rnd).perform().release()
-            # action_list[i].press(ltd).wait(300).move_to(x=x_curr, y=yl).perform().release()
+            action = TouchAction(self.driver)
+            rnd = randint(0, rnd_range)  # only for better visual effect ;)
+            action.press(ltd).wait(300).move_to(x=x_curr, y=yl-rnd).perform().release()
             ltd.click()  # trick - only that REALLY releases touch on element
             sleep(0.5)
             x_curr += l_width
-            i += 1
 
         # Testing conditions No 1:
         word_built = ma.get_word_built()
@@ -99,11 +117,13 @@ class MainActivityTest(BaseTest):
 
         test_ok_1 = (word_built != -1)
 
+        # Testing conditions No 2:
         if test_ok_1:
             # The word we built can contain spaces, so:
             word_built_txt = word_built.text.replace(" ", "")
-            test_ok_2 = (word_built_txt.upper() == word.upper())    # in case sbd click bUpper during test :(
+            test_ok_2 = (word_built_txt.upper() == word.upper())    # in case sbd clicks bUpper during test :(
 
+            # Testing conditions No 3:
             if test_ok_2:
                 b_dalej = ma.get_bdalej_button()
                 test_ok_3 = (b_dalej != -1)

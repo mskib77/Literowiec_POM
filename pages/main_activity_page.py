@@ -24,8 +24,8 @@ class MainActivity:
         nazwa = self.driver.find_element(*MainActivityLocators.NAZWA)
         return nazwa
 
-    def __get_unordered_list_of_shown_labels(self, all_labels_ids):
-        """Returns a list of ids of labels (=letters) shown on the screen"""
+    def get_unordered_list_of_ids_of_shown_labels(self, all_labels_ids):
+        """Returns a list of ids of labels (=letters) shown scattered on the screen"""
         """Does it by filtering out invisible labels from all_labels_ids list"""
 
         # speeding up, because it is normal not to find an invisible label
@@ -33,10 +33,10 @@ class MainActivity:
         # Trying to find labels on the screen; if not found - that's ok, it is simply not used so it's invisible
         # (eg. the guessed Word is too short to occupy all the labels etc.):
         ids_of_labels_shown = []
-        for id in all_labels_ids:
+        for idi in all_labels_ids:
             try:
-                found = self.driver.find_element_by_id(id)
-                ids_of_labels_shown.append(id)
+                found = self.driver.find_element_by_id(idi)
+                ids_of_labels_shown.append(idi)
             except NoSuchElementException:
                 pass
         # restoring timeout:
@@ -58,7 +58,7 @@ class MainActivity:
         """Returns the list of IDs of all visible labels (=letters)"""
         """The returned list is of the same sequence as the letters in 'word' are. """
         result = []
-        ul = self.__get_unordered_list_of_shown_labels(MainActivityLocators.ALL_LABELS_IDS)
+        ul = self.get_unordered_list_of_ids_of_shown_labels(MainActivityLocators.ALL_LABELS_IDS)
         # Iterating through 'word' (from left to right) guarantees that the resultant list
         # will have the same sequence as the letters in 'word'
         for letter in word:
