@@ -7,6 +7,7 @@ from selenium.common.exceptions import NoSuchElementException
 
 from locators import MainActivityLocators
 from pages.main_activity_page import MainActivity
+from pages.settings_activity_page import SettingsActivity
 from tests.test_utils import TestUtils
 
 PATH = lambda p: os.path.abspath(
@@ -47,7 +48,7 @@ class BaseTest(unittest.TestCase):
         """ SUT objects (=activities) creation """
         " These activities will/may be used by tests "
         self.ma = MainActivity(self.driver)
-        # self.sa = SettingsActivity(self.driver)
+        self.sa = SettingsActivity(self.driver)
         # self.ia = InfoActivity(self.driver)
 
     def __dismiss_splash_window(self):

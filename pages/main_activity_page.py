@@ -56,7 +56,8 @@ class MainActivity:
 
     def get_ordered_list_of_ids_of_shown_labels(self, word):
         """Returns the list of IDs of all visible labels (=letters)"""
-        """The returned list is of the same sequence as the letters in 'word' are. """
+        """The returned list is of the same SEQUENCE as the letters in 'word' are. """
+        """Note: yhis is not alphabetical order!!!"""
         result = []
         ul = self.get_unordered_list_of_ids_of_shown_labels(MainActivityLocators.ALL_LABELS_IDS)
         # Iterating through 'word' (from left to right) guarantees that the resultant list
@@ -107,8 +108,17 @@ class MainActivity:
         red_box_sizes = red_box.size
         x0 = red_box_location.get('x')
         box_h = red_box_sizes.get('height')
-        # print("box_h: ", box_h)
-        # print("drugi wymiar: ", red_box_sizes.get('width'))
         yl = red_box_location.get('y') + int(box_h / 2)
-        # print("x0 l_width yl box_h: ", x0, l_width, yl, box_h)
+
+        # Minor adjustments inspired by practice:
+        x0 = x0 + int(0.6 * l_width)
+        l_width = int(0.95 * l_width)
+        nl = len(seen_labels_ids)
+        if nl >= 12:
+            l_width = int(0.85 * l_width)
+        if nl <= 6:
+            x0 = x0 + 3 * l_width
+            l_width = int(1.2 * l_width)
+        # end of adjustments
+
         return l_width, x0, yl, box_h
