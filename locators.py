@@ -33,12 +33,9 @@ class MainActivityLocators:
 
 class SettingsActivityLocators:
     TITLE = (By.ID, 'autyzmsoft.pl.literowiec:id/tv_tytul')
+    CB_NAZWA_ID = 'autyzmsoft.pl.literowiec:id/cb_Nazwa'
+    RB_NOPICTURE_ID = 'autyzmsoft.pl.literowiec:id/rb_noPicture'
+    BINFO_ID = 'autyzmsoft.pl.literowiec:id/bInfo'
 
-    CB_NAZWA = (By.ID, 'autyzmsoft.pl.literowiec:id/cb_Nazwa')
-    CB_NAZWA_id = 'autyzmsoft.pl.literowiec:id/cb_Nazwa'
-
-    RB_NOPICTURE = (By.ID, 'autyzmsoft.pl.literowiec:id/rb_noPicture')
-    RB_NOPICTURE_id = 'autyzmsoft.pl.literowiec:id/rb_noPicture'
-
-    BINFO = (By.ID, 'autyzmsoft.pl.literowiec:id/bInfo')
-    BINFO_id = 'autyzmsoft.pl.literowiec:id/bInfo'
+class InfoActivityLocators:
+    ACTION_BAR_TITLE = (By.ID, 'android:id/action_bar_title')

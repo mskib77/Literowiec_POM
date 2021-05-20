@@ -20,53 +20,36 @@ class SettingsActivity:
         return checkable_list is not []
 
     def _scroll_to(self, element):
-        """Auxiliary: scrolling down till the @element button appears"""
-
+        """Auxiliary: scrolling down till the @element appears"""
+        MAX_SCROLLS_ALLOWED = 5    # to prevent infinite loop in case we can't find the @element
         x, y = TestUtils.get_screen_dimensions(self.driver)
         # speeding up a little:
         self.driver.implicitly_wait(1)
         # scrolling down till the INFO button appears:
         found = False
+        scroll_number = 0
         while not found:
-            print("WCHODZE*****************")
-
             try:
-                self.driver.find_element_by_id(element)
+                el_we_seek = self.driver.find_element_by_id(element)
                 found = True
             except NoSuchElementException:
                 self.driver.swipe(x / 2, y * 0.9, x / 2, y * 0.1, 1000)
+                scroll_number += 1
+                if scroll_number > MAX_SCROLLS_ALLOWED:
+                    raise NoSuchElementException(f"Cant't find element. Too many scrolls performed ({scroll_number}) "
+                                                 f"while {MAX_SCROLLS_ALLOWED} allowed")
         # restoring timeout:
-        print("wychodze....................................")
         self.driver.implicitly_wait(TestUtils.WAIT_TIME)
-
-    # def _scroll_to_info_button(self):
-    #     """Auxiliary: scrolling down till the INFO button appears"""
-    #
-    #     x, y = TestUtils.get_screen_dimensions(self.driver)
-    #     # speeding up a little:
-    #     self.driver.implicitly_wait(1)
-    #     # scrolling down till the INFO button appears:
-    #     found = False
-    #     while not found:
-    #         try:
-    #             self.driver.find_element(*SAL.BINFO)
-    #             found = True
-    #         except NoSuchElementException:
-    #             self.driver.swipe(x / 2, y * 0.9, x / 2, y * 0.1, 1000)
-    #     # restoring timeout:
-    #     self.driver.implicitly_wait(TestUtils.WAIT_TIME)
+        return el_we_seek
 
     def get_info_button(self):
-        self._scroll_to(SAL.BINFO_id)
-        binfo = self.driver.find_element(*SAL.BINFO)
+        binfo = self._scroll_to(SAL.BINFO_ID)
         return binfo
 
     def get_cb_nazwa(self):
-        self._scroll_to(SAL.CB_NAZWA_id)
-        cb = self.driver.find_element(*SAL.CB_NAZWA)
+        cb = self._scroll_to(SAL.CB_NAZWA_ID)
         return cb
 
     def get_rb_nopicture(self):
-        self._scroll_to(SAL.RB_NOPICTURE_id)
-        rb = self.driver.find_element(*SAL.RB_NOPICTURE)
+        rb = self._scroll_to(SAL.RB_NOPICTURE_ID)
         return rb

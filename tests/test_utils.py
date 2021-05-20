@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class TestUtils:
-    WAIT_TIME = 15  # system-wide implicit wait
+    WAIT_TIME = 10  # system-wide implicit wait
     NUM_OF_LABELS = 12  # max number of letters (=named 'LabesNN' in Android Studio) in guessed word
 
     @classmethod

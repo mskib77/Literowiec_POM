@@ -6,6 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
 
 from locators import MainActivityLocators
+from pages.info_activity_page import InfoActivity
 from pages.main_activity_page import MainActivity
 from pages.settings_activity_page import SettingsActivity
 from tests.test_utils import TestUtils
@@ -49,7 +50,7 @@ class BaseTest(unittest.TestCase):
         " These activities will/may be used by tests "
         self.ma = MainActivity(self.driver)
         self.sa = SettingsActivity(self.driver)
-        # self.ia = InfoActivity(self.driver)
+        self.ia = InfoActivity(self.driver)
 
     def __dismiss_splash_window(self):
         """ Clicks on STARTUJ button to unlock Main Activity """

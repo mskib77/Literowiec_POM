@@ -15,98 +15,9 @@ from tests.test_utils import TestUtils
 @ddt
 class MainActivityTest(BaseTest):
 
-    def __get_word_and_labels_list(self):
-        """ Auxiliary. Returns the word under the picture and UNORDERED list of labels (scattered letters) seen on the screen"""
-        word = self.ma.get_nazwa_field().text  # the Word under the picture
-        labels_id_list = self.ma.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
-        labels_list = []
-        for idi in labels_id_list:
-            labels_list.append(self.driver.find_element_by_id(idi))
-        return word, labels_list
-
-    def test_switching_to_settings(self):
-        """
-        Can switch to Settings?
-        Passed if there are checkable elements in the activity we switch to.
-        """
-        ma = self.ma
-        sa = self.sa
-        ma.long_touch_on_image()
-        WebDriverWait(self.driver, TestUtils.WAIT_TIME).until(EC.presence_of_element_located(SAL.TITLE))
-        list_not_empty = sa.settings_elements_present()
-        self.assertTrue(list_not_empty, "Settings did not appear!")
-
-    def test_number_of_labels_is_correct(self):
-        """ Passed if the number of scattered letters (labels) equals the length of the guessed word """
-        word, labels_list = self.__get_word_and_labels_list()
-        num_of_letters = len(word)
-        num_of_labels = len(labels_list)
-        test_ok = num_of_labels == num_of_letters
-        if not test_ok:
-            TestUtils.screen_shot(self.driver, "Diffrent numbers of letters and labels")
-        self.assertTrue(test_ok, f"Number of labels ({num_of_labels}) on the screen and number"
-                                 f"of letters ({num_of_letters}) in the word differ. See screenshot. ")
-
-
-
-    # @unittest.skip
-    def test_from_lowercase_to_uppercase(self):
-        """ Checking whether changing letters from lowercase to uppercase works properly """
-        """ Passed if:
-        1. word under the picture is in uppercase AND
-        2. all scattered labels are in uppercase
-        """
-        # word and label list BEFORE rising up:
-        word_1, labels_list_1 = self.__get_word_and_labels_list()
-        # "Rising" the word and labels:
-        btn = self.ma.get_upper_lower_button()
-        btn.click()
-        # Checking after the 'rising':
-        word_2, labels_list_2 = self.__get_word_and_labels_list()
-        # condition No 1
-        test_ok_1 = (word_2 == word_1.upper())
-        # condition No 2
-        test_ok_2 = True
-        for i in range(0, len(labels_list_2)):
-            if labels_list_2[i].text != labels_list_1[i].text.upper():
-                test_ok_2 = False
-                break
-        test_ok = test_ok_1 and test_ok_2
-        if not test_ok:
-            TestUtils.screen_shot(self.driver, "Error while changing letters to uppercase")
-        self.assertTrue(test_ok, "Error while changing letters to uppercase. See screenshot.")
-
-    def test_from_lowercase_to_uppercase_and_back(self):
-        """ Checking whether changing letters from lowercase to uppercase and then back to lowercase works properly """
-        """ Passed if:
-        1. word under the picture is as it was upon starting the test AND
-        2. all scattered labels are as they were upon starting the test
-        """
-        # word and label list BEFORE rising up:
-        word_1, labels_list_1 = self.__get_word_and_labels_list()
-        # "Rising" the word and labels:
-        btn = self.ma.get_upper_lower_button()
-        btn.click()
-        # "Lowering" the word and labels
-        sleep(1)    # for better visual effect
-        btn.click()
-        # Checking after the 'Lowering':
-        word_2, labels_list_2 = self.__get_word_and_labels_list()
-        # condition No 1
-        test_ok_1 = (word_2 == word_1)
-        # condition No 2
-        test_ok_2 = True
-        for i in range(0, len(labels_list_2)):
-            if labels_list_2[i].text != labels_list_1[i].text:
-                test_ok_2 = False
-                break
-        test_ok = test_ok_1 and test_ok_2
-        if not test_ok:
-            TestUtils.screen_shot(self.driver, "Error while changing letters to uppercase and then back to lowercase")
-        self.assertTrue(test_ok, "Error while changing letters to uppercase and then back to lowercase. See screenshot.")
-
     # @data(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39)
-    @data(1, 2, 3, 4)  # causes the test to be run 'N' times
+    # @data(1, 2, 3, 4)  # causes the test to be run 'N' times
+    @data(1)  # causes the test to be run 'N' times
     # @unittest.skip
     def test_build_the_word(self, placeholder):
         """Passed if:
@@ -115,7 +26,7 @@ class MainActivityTest(BaseTest):
          3. There appears on the screen a big button with green arrow
          """
         ma = self.ma
-        # every second puzzle should be done while in uppercase
+        # every second puzzle should be done while in uppercase, so 'uppcasing' the word and labels:
         if placeholder % 2 == 0:
             btn = ma.get_upper_lower_button()
             sleep(0.5)  # for better visual effect
@@ -170,7 +81,8 @@ class MainActivityTest(BaseTest):
         self.assertTrue(test_ok,
                         f"Error in test_build_the_word(self) Reason: {reasons} \nSee the picture: 'Error while doing the puzzle.png'")
 
-    @data(1,2,3,4,5,6)
+    # @data(1, 2)
+    @data(1)
     def test_build_the_word_incorrectly(self, dummy):
         """ What happens after we've built the word incorrectly """
         """Passed if:
@@ -196,6 +108,104 @@ class MainActivityTest(BaseTest):
 
         self.assertTrue(test_ok, "Green button present after improperly doing the puzzle! See screenshot.")
 
+    # @unittest.skip
+    def test_from_lowercase_to_uppercase(self):
+        """ Checking whether changing letters from lowercase to uppercase works properly """
+        """ Passed if:
+        1. word under the picture is in uppercase AND
+        2. all scattered labels are in uppercase
+        """
+        # word and label list BEFORE rising up:
+        word_1, labels_list_1 = self.__get_word_and_labels_list()
+        # "Rising" the word and labels:
+        btn = self.ma.get_upper_lower_button()
+        btn.click()
+        # Checking after the 'rising':
+        word_2, labels_list_2 = self.__get_word_and_labels_list()
+        # condition No 1
+        test_ok_1 = (word_2 == word_1.upper())
+        # condition No 2
+        test_ok_2 = True
+        for i in range(0, len(labels_list_2)):
+            if labels_list_2[i].text != labels_list_1[i].text.upper():
+                test_ok_2 = False
+                break
+        test_ok = test_ok_1 and test_ok_2
+        if not test_ok:
+            TestUtils.screen_shot(self.driver, "Error while changing letters to uppercase")
+        self.assertTrue(test_ok, "Error while changing letters to uppercase. See screenshot.")
+
+    def test_from_lowercase_to_uppercase_and_back(self):
+        """ Checking whether changing letters from lowercase to uppercase and then back to lowercase works properly """
+        """ Passed if:
+        1. Word under the picture is as it was upon starting the test AND
+        2. All scattered labels are as they were upon starting the test
+        """
+        # word and label list BEFORE rising up:
+        word_1, labels_list_1 = self.__get_word_and_labels_list()
+        # "Rising" the word and labels:
+        btn = self.ma.get_upper_lower_button()
+        btn.click()
+        # "Lowering" the word and labels
+        sleep(1)    # for better visual effect
+        btn.click()
+        # Checking after the 'Lowering':
+        word_2, labels_list_2 = self.__get_word_and_labels_list()
+        # condition No 1
+        test_ok_1 = (word_2 == word_1)
+        # condition No 2
+        test_ok_2 = True
+        for i in range(0, len(labels_list_2)):
+            if labels_list_2[i].text != labels_list_1[i].text:
+                test_ok_2 = False
+                break
+        test_ok = test_ok_1 and test_ok_2
+        if not test_ok:
+            TestUtils.screen_shot(self.driver, "Error while changing letters to uppercase and then back to lowercase")
+        self.assertTrue(test_ok, "Error while changing letters to uppercase and then back to lowercase. See screenshot.")
+
+    def test_number_of_labels_is_correct(self):
+        """ Passed if the number of scattered letters (labels) equals the length of the guessed word """
+        word, labels_list = self.__get_word_and_labels_list()
+        num_of_letters = len(word)
+        num_of_labels = len(labels_list)
+        test_ok = num_of_labels == num_of_letters
+        if not test_ok:
+            TestUtils.screen_shot(self.driver, "Diffrent numbers of letters and labels")
+        self.assertTrue(test_ok, f"Number of labels ({num_of_labels}) on the screen and number"
+                                 f"of letters ({num_of_letters}) in the word differ. See screenshot. ")
+
+    def test_clicking_At_buttons(self):
+        """ What happens after we click @ button?
+        Passed if:
+
+        """
+        ma = self.driver.ma
+        word_1, labels_list_1 = self.__get_word_and_labels_list()
+        ma.get
+
+
+    def test_switching_to_settings(self):
+        """
+        Can switch to Settings?
+        Passed if there are checkable elements in the activity we switch to.
+        """
+        ma = self.ma
+        sa = self.sa
+        ma.long_touch_on_image()
+        WebDriverWait(self.driver, TestUtils.WAIT_TIME).until(EC.presence_of_element_located(SAL.TITLE))
+        list_not_empty = sa.settings_elements_present()
+        self.assertTrue(list_not_empty, "Settings did not appear!")
+
+    def __get_word_and_labels_list(self):
+        """ Auxiliary. Returns the word under the picture and UNORDERED list of labels (scattered letters) seen on the screen"""
+        word = self.ma.get_nazwa_field().text  # the Word under the picture
+        labels_id_list = self.ma.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
+        labels_list = []
+        for idi in labels_id_list:
+            labels_list.append(self.driver.find_element_by_id(idi))
+        return word, labels_list
+
     def __move_Labels_to_places(self, labels_list, xo, spacing, ltrim, rnd_range):
         """ Physical moves on labels. Labels from @labels_list are moved to inside of the red box.
         Parameters:
@@ -212,3 +222,4 @@ class MainActivityTest(BaseTest):
             ltd.click()  # trick - only that REALLY releases touch on element
             sleep(0.5)
             xo += spacing
+
