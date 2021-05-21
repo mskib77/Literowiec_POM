@@ -15,6 +15,7 @@ from tests.test_utils import TestUtils
 @ddt
 class MainActivityTest(BaseTest):
 
+    # No 1 test case in documentation
     # @data(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39)
     @data(1, 2, 3, 4)  # causes the test to be run 'N' times
     # @unittest.skip
@@ -80,6 +81,7 @@ class MainActivityTest(BaseTest):
         self.assertTrue(test_ok,
                         f"Error in test_build_the_word(self) Reason: {reasons} \nSee the picture: 'Error while doing the puzzle.png'")
 
+    # No 2 test case in documentation
     def test_build_the_word_incorrectly(self):
         """ What happens after we've built the word incorrectly. """
         """Passed if:
@@ -105,6 +107,7 @@ class MainActivityTest(BaseTest):
 
         self.assertTrue(test_ok, "Green button present after improperly doing the puzzle! See screenshot.")
 
+    # No 3 test case in documentation
     def test_clicking_At_button(self):
         """ What happens after we click @ button?
         Passed if:
@@ -141,6 +144,7 @@ class MainActivityTest(BaseTest):
         self.assertTrue(test_ok,
                         f"Error in test_clicking_At_button(self) Reason: {reasons}")
 
+    # No 4 test case in documentation
     # @unittest.skip
     def test_from_lowercase_to_uppercase(self):
         """ Checking whether changing letters from lowercase to uppercase works properly """
@@ -168,6 +172,7 @@ class MainActivityTest(BaseTest):
             TestUtils.screen_shot(self.driver, "Error while changing letters to uppercase")
         self.assertTrue(test_ok, "Error while changing letters to uppercase. See screenshot.")
 
+    # No 5 test case in documentation
     def test_from_lowercase_to_uppercase_and_back(self):
         """ Checking whether changing letters from lowercase to uppercase and then back to lowercase works properly """
         """ Passed if:
@@ -197,6 +202,7 @@ class MainActivityTest(BaseTest):
             TestUtils.screen_shot(self.driver, "Error while changing letters to uppercase and then back to lowercase")
         self.assertTrue(test_ok, "Error while changing letters to uppercase and then back to lowercase. See screenshot.")
 
+    # No 6 test case in documentation
     def test_number_of_labels_is_correct(self):
         """ Passed if the number of scattered letters (labels) equals the length of the guessed word """
         word, labels_list = self.__get_word_and_labels_list()
@@ -208,6 +214,7 @@ class MainActivityTest(BaseTest):
         self.assertTrue(test_ok, f"Number of labels ({num_of_labels}) on the screen and number"
                                  f"of letters ({num_of_letters}) in the word differ. See screenshot. ")
 
+    # No 7 test case in documentation
     def test_switching_to_settings(self):
         """
         Can switch to Settings?

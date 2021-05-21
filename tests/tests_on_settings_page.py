@@ -23,6 +23,7 @@ class SettingsPageTest(BaseTest):
         self.ma.long_touch_on_image()
         WebDriverWait(driver, TestUtils.WAIT_TIME).until(EC.presence_of_element_located(SAL.TITLE))
 
+    # No 8 test case in documentation
     def test_switching_off_word_and_picture(self):
         """ Is switching off the picture and the word (nazwa) under the picture effective?
         Passed if:
@@ -61,6 +62,7 @@ class SettingsPageTest(BaseTest):
 
         self.assertTrue(test_ok, "Image and/or word underneath still present despite switching them off!")
 
+    # No 9 test case in documentation
     # @unittest.skip
     def test_switching_to_info_activity(self):
         """
