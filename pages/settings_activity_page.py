@@ -19,12 +19,12 @@ class SettingsActivity:
         checkable_list = self._get_checkable_elements_list()
         return checkable_list is not []
 
-    def _scroll_to(self, element):
+    def __scroll_to(self, element):
         """Auxiliary: scrolling down till the @element appears"""
-        MAX_SCROLLS_ALLOWED = 5    # to prevent infinite loop in case we can't find the @element
+        MAX_SCROLLS_ALLOWED = 6    # to prevent infinite loop in case we can't find the @element
         x, y = TestUtils.get_screen_dimensions(self.driver)
         # speeding up a little:
-        self.driver.implicitly_wait(1)
+        self.driver.implicitly_wait(2)
         # scrolling down till the INFO button appears:
         found = False
         scroll_number = 0
@@ -43,13 +43,13 @@ class SettingsActivity:
         return el_we_seek
 
     def get_info_button(self):
-        binfo = self._scroll_to(SAL.BINFO_ID)
+        binfo = self.__scroll_to(SAL.BINFO_ID)
         return binfo
 
     def get_cb_nazwa(self):
-        cb = self._scroll_to(SAL.CB_NAZWA_ID)
+        cb = self.__scroll_to(SAL.CB_NAZWA_ID)
         return cb
 
     def get_rb_nopicture(self):
-        rb = self._scroll_to(SAL.RB_NOPICTURE_ID)
+        rb = self.__scroll_to(SAL.RB_NOPICTURE_ID)
         return rb

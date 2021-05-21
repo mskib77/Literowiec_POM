@@ -13,6 +13,7 @@ default_dir = os.getcwd()
 
 # Creating the suit that contains all the tests:
 test_suite = unittest.TestSuite([MA_tests, SA_tests])
+# test_suite = unittest.TestSuite([SA_tests])
 
 # Uruchomenie suite:
 if __name__ == "__main__":

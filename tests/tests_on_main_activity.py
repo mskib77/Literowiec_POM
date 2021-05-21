@@ -28,7 +28,7 @@ class MainActivityTest(BaseTest):
         # every second puzzle should be done while in uppercase, so 'uppcasing' the word and labels:
         if placeholder % 2 == 0:
             btn = ma.get_upper_lower_button()
-            sleep(0.5)  # for better visual effect
+            sleep(1)  # for better visual effect
             btn.click()
 
         word = ma.get_nazwa_field().text  # the Word to build
@@ -80,7 +80,7 @@ class MainActivityTest(BaseTest):
         self.assertTrue(test_ok,
                         f"Error in test_build_the_word(self) Reason: {reasons} \nSee the picture: 'Error while doing the puzzle.png'")
 
-    def test_build_the_word_incorrectly(self, dummy):
+    def test_build_the_word_incorrectly(self):
         """ What happens after we've built the word incorrectly. """
         """Passed if:
          1. All labels are placed in the red box in such a way that they do not form the proper word AND
@@ -104,6 +104,42 @@ class MainActivityTest(BaseTest):
             TestUtils.screen_shot(self.driver, "Green button present after improperly doing the puzzle")
 
         self.assertTrue(test_ok, "Green button present after improperly doing the puzzle! See screenshot.")
+
+    def test_clicking_At_button(self):
+        """ What happens after we click @ button?
+        Passed if:
+        1. The word under the picture does not change AND
+        2. Labels scattered on the screen do change their positions AND
+        3. Labels contain the same set of letters as before
+        """
+        ma = self.ma
+        word_1 = ma.get_nazwa_field().text
+        list_1 = ma.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
+        placeholder, letters_on_labels_1 = self.__get_word_and_labels_list()
+        # Shifting to uppercase:
+        b_again = ma.get_bagain_button()
+        b_again.click()
+        #
+        word_2 = ma.get_nazwa_field().text
+        list_2 = ma.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
+        # Testing conditions 1, 2, 3:
+        test_ok_1 = (word_2 == word_1)
+        test_ok_2 = (list_1 != list_2)
+        placeholder, letters_on_labels_2 = self.__get_word_and_labels_list()
+        a = set(letters_on_labels_1)
+        b = set(letters_on_labels_2)
+        test_ok_3 = (a == b)
+
+        # Determining the reason(s) of negative test (if any):
+        reasons = []
+        if not test_ok_1: reasons.append("Words under the picture differ!")
+        if not test_ok_2: reasons.append("Labels on screen did not chane their positions!")
+        if not test_ok_3: reasons.append("Different set of labels after clicking @ button!")
+
+        test_ok = test_ok_1 and test_ok_2 and test_ok_3
+
+        self.assertTrue(test_ok,
+                        f"Error in test_clicking_At_button(self) Reason: {reasons}")
 
     # @unittest.skip
     def test_from_lowercase_to_uppercase(self):
@@ -171,42 +207,6 @@ class MainActivityTest(BaseTest):
             TestUtils.screen_shot(self.driver, "Diffrent numbers of letters and labels")
         self.assertTrue(test_ok, f"Number of labels ({num_of_labels}) on the screen and number"
                                  f"of letters ({num_of_letters}) in the word differ. See screenshot. ")
-
-    def test_clicking_At_buttons(self):
-        """ What happens after we click @ button?
-        Passed if:
-        1. The word under the picture does not change AND
-        2. Labels scattered on the screen do change their positions AND
-        3. Labels contain the same set of letters as before
-        """
-        ma = self.ma
-        word_1 = ma.get_nazwa_field().text
-        list_1 = ma.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
-        placeholder, letters_on_labels_1 = self.__get_word_and_labels_list()
-        # Shifting to uppercase:
-        b_again = ma.get_bagain_button()
-        b_again.click()
-        #
-        word_2 = ma.get_nazwa_field().text
-        list_2 = ma.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
-        # Testing conditions 1, 2, 3:
-        test_ok_1 = (word_2 == word_1)
-        test_ok_2 = (list_1 != list_2)
-        placeholder, letters_on_labels_2 = self.__get_word_and_labels_list()
-        a = set(letters_on_labels_1)
-        b = set(letters_on_labels_2)
-        test_ok_3 = (a == b)
-
-        # Determining the reason(s) of negative test (if any):
-        reasons = []
-        if not test_ok_1: reasons.append("Words under the picture differ!")
-        if not test_ok_2: reasons.append("Labels on screen did not chane their positions!")
-        if not test_ok_3: reasons.append("Different set of labels after clicking @ button!")
-
-        test_ok = test_ok_1 and test_ok_2 and test_ok_3
-
-        self.assertTrue(test_ok,
-                        f"Error in test_clicking_At_button(self) Reason: {reasons}")
 
     def test_switching_to_settings(self):
         """
