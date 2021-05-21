@@ -68,16 +68,17 @@ class MainActivity:
         result = []
         ul = self.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
         # Iterating through 'word' (from left to right) guarantees that the resultant list
-        # will have the same sequence as the letters in 'word'
+        # will have the same sequence as the letters in @word
         for letter in word:
             idx = self.__get_first_index_of_an_elem_containing_letter(ul, letter)
             result.append(ul[idx])
-            # The element just found MUST be removed from the list, otherwise if the word contains more same
-            # letters, only the first letter (=label) would be kept finding:
+            # The element just found MUST be removed from the list, otherwise if the word contains more same letters,
+            # only the first letter (=label) would be kept finding:
             ul.pop(idx)
         return result
 
     def get_word_built(self):
+        """ Returns the word we have built in the red box """
         try:
             wb = self.driver.find_element(*MAL.WORD_BUILT)
             return wb

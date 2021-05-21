@@ -240,10 +240,10 @@ class MainActivityTest(BaseTest):
     def __move_Labels_to_places(self, labels_list, xo, spacing, ltrim, rnd_range):
         """ Physical moves on labels. Labels from @labels_list are moved to inside of the red box.
         Parameters:
-        xo - x position of where to put the FIRST label, then it is modified to place the next etc.
-        spacing - label width calculated earlier
-        ltrim - horizontal line of 'trim' along which to place the labels
-        rnd_range - the part of the red box height within which the 'dropping' place may by randomly modified
+        xo - x position of where to put the FIRST label, then it is modified to place the next one etc.;
+        spacing - label width calculated earlier;
+        ltrim - horizontal line of 'trim' along which to place the labels;
+        rnd_range - the part of the red box height within which the 'dropping' place may by randomly modified;
         """
         for id_el in labels_list:
             ltd = self.driver.find_element_by_id(id_el)  # ltd - label to drag
