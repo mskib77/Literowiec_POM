@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="45c742d4-b230-4b18-9f4b-969d90035ce6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/locators.py" beforeDir="false" afterPath="$PROJECT_DIR$/locators.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/main_activity_page.py" beforeDir="false" afterPath="$PROJECT_DIR$/pages/main_activity_page.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/test_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/test_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/tests_on_main_activity.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/tests_on_main_activity.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -43,7 +45,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../profMarcin_POM" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in tests_on_main_activity.py">
+  <component name="RunManager" selected="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_clicking_At_buttons">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Literowiec_POM" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -100,7 +102,7 @@
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests_on_main_activity.MainActivityTest.test_from_lowercase_to_uppercase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests_on_main_activity.MainActivityTest.test_clicking_At_buttons" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Literowiec_POM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -110,11 +112,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_on_main_activity.MainActivityTest.test_from_lowercase_to_uppercase&quot;" />
+      <option name="_new_target" value="&quot;tests_on_main_activity.MainActivityTest.test_clicking_At_buttons&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
-    <configuration name="Unittests for tests_on_main_activity.MainActivityTest.test_number_of_labels_is_correct" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration name="Unittests for tests_on_settings_page.SettingsPageTest.test_switching_to_info_activity" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <module name="Literowiec_POM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -124,7 +126,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;tests_on_main_activity.MainActivityTest.test_number_of_labels_is_correct&quot;" />
+      <option name="_new_target" value="&quot;tests_on_settings_page.SettingsPageTest.test_switching_to_info_activity&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
       <method v="2" />
     </configuration>
@@ -144,11 +146,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_clicking_At_buttons" />
+        <item itemvalue="Python.suite_raport" />
         <item itemvalue="Python tests.Unittests in tests_on_main_activity.py" />
         <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_build_the_word" />
-        <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_number_of_labels_is_correct" />
-        <item itemvalue="Python tests.Unittests for tests_on_main_activity.MainActivityTest.test_from_lowercase_to_uppercase" />
-        <item itemvalue="Python.suite_raport" />
+        <item itemvalue="Python tests.Unittests for tests_on_settings_page.SettingsPageTest.test_switching_to_info_activity" />
       </list>
     </recent_temporary>
   </component>

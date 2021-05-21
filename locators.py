@@ -3,11 +3,15 @@ from selenium.webdriver.common.by import By
 
 class MainActivityLocators:
     IMAGE = (By.ID, 'autyzmsoft.pl.literowiec:id/imageView')
+    # Name under the picture. Later in code referred to as 'word', 'guessed word', proper word', 'nazwa' etc.:
     NAZWA = (By.ID, 'autyzmsoft.pl.literowiec:id/tvNazwa')
     BUPPLOW = (By.ID, 'autyzmsoft.pl.literowiec:id/bUpperLower')
     BDALEJ = (By.ID, 'autyzmsoft.pl.literowiec:id/bDalej')
     OBSZAR = (By.ID, 'autyzmsoft.pl.literowiec:id/l_Obszar')
     BSHIFT_LEFT = (By.ID, 'autyzmsoft.pl.literowiec:id/bShiftLeft')
+    B_AGAIN = (By.ID, 'autyzmsoft.pl.literowiec:id/bAgain')
+    # Word that appears in the 'red box' AFTER (only) we correctly did the puzzle:
+    WORD_BUILT = (By.ID, 'autyzmsoft.pl.literowiec:id/tvShownWord')
 
     L00_str = 'autyzmsoft.pl.literowiec:id/L00'
     L01_str = 'autyzmsoft.pl.literowiec:id/L01'
@@ -27,8 +31,6 @@ class MainActivityLocators:
     ALL_LABELS_IDS = [L00_str, L01_str, L02_str, L03_str, L04_str, L05_str,
                       L06_str, L07_str, L08_str, L09_str, L10_str, L11_str]
 
-    # Word that appears in the 'red' box AFTER (only) we correctly did the puzzle:
-    WORD_BUILT = (By.ID, 'autyzmsoft.pl.literowiec:id/tvShownWord')
 
 
 class SettingsActivityLocators:

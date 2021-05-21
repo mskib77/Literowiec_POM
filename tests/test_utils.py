@@ -4,7 +4,7 @@ from datetime import datetime
 
 class TestUtils:
     WAIT_TIME = 10  # system-wide implicit wait
-    NUM_OF_LABELS = 12  # max number of letters (=named 'LabesNN' in Android Studio) in guessed word
+    NUM_OF_LABELS = 12  # max number of letters (=objects named 'LabesNN' in Android Studio) in guessed word
 
     @classmethod
     def screen_shot(cls, driver, file_name):
@@ -38,7 +38,7 @@ class TestUtils:
     #     print("Calość:")
     #     print(labels_list)
     #     # return labels_list
-    #     return MainActivityLocators.ALL_LABELS_IDS
+    #     return MAL.ALL_LABELS_IDS
     #
     #
     #     # labels_list = \

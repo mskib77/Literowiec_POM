@@ -16,8 +16,7 @@ from tests.test_utils import TestUtils
 class MainActivityTest(BaseTest):
 
     # @data(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39)
-    # @data(1, 2, 3, 4)  # causes the test to be run 'N' times
-    @data(1)  # causes the test to be run 'N' times
+    @data(1, 2, 3, 4)  # causes the test to be run 'N' times
     # @unittest.skip
     def test_build_the_word(self, placeholder):
         """Passed if:
@@ -81,10 +80,8 @@ class MainActivityTest(BaseTest):
         self.assertTrue(test_ok,
                         f"Error in test_build_the_word(self) Reason: {reasons} \nSee the picture: 'Error while doing the puzzle.png'")
 
-    # @data(1, 2)
-    @data(1)
     def test_build_the_word_incorrectly(self, dummy):
-        """ What happens after we've built the word incorrectly """
+        """ What happens after we've built the word incorrectly. """
         """Passed if:
          1. All labels are placed in the red box in such a way that they do not form the proper word AND
          2. The big button with green arrow do NOT appear
@@ -127,7 +124,7 @@ class MainActivityTest(BaseTest):
         # condition No 2
         test_ok_2 = True
         for i in range(0, len(labels_list_2)):
-            if labels_list_2[i].text != labels_list_1[i].text.upper():
+            if labels_list_2[i] != labels_list_1[i].upper():
                 test_ok_2 = False
                 break
         test_ok = test_ok_1 and test_ok_2
@@ -156,7 +153,7 @@ class MainActivityTest(BaseTest):
         # condition No 2
         test_ok_2 = True
         for i in range(0, len(labels_list_2)):
-            if labels_list_2[i].text != labels_list_1[i].text:
+            if labels_list_2[i] != labels_list_1[i]:
                 test_ok_2 = False
                 break
         test_ok = test_ok_1 and test_ok_2
@@ -178,12 +175,38 @@ class MainActivityTest(BaseTest):
     def test_clicking_At_buttons(self):
         """ What happens after we click @ button?
         Passed if:
-
+        1. The word under the picture does not change AND
+        2. Labels scattered on the screen do change their positions AND
+        3. Labels contain the same set of letters as before
         """
-        ma = self.driver.ma
-        word_1, labels_list_1 = self.__get_word_and_labels_list()
-        ma.get
+        ma = self.ma
+        word_1 = ma.get_nazwa_field().text
+        list_1 = ma.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
+        placeholder, letters_on_labels_1 = self.__get_word_and_labels_list()
+        # Shifting to uppercase:
+        b_again = ma.get_bagain_button()
+        b_again.click()
+        #
+        word_2 = ma.get_nazwa_field().text
+        list_2 = ma.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
+        # Testing conditions 1, 2, 3:
+        test_ok_1 = (word_2 == word_1)
+        test_ok_2 = (list_1 != list_2)
+        placeholder, letters_on_labels_2 = self.__get_word_and_labels_list()
+        a = set(letters_on_labels_1)
+        b = set(letters_on_labels_2)
+        test_ok_3 = (a == b)
 
+        # Determining the reason(s) of negative test (if any):
+        reasons = []
+        if not test_ok_1: reasons.append("Words under the picture differ!")
+        if not test_ok_2: reasons.append("Labels on screen did not chane their positions!")
+        if not test_ok_3: reasons.append("Different set of labels after clicking @ button!")
+
+        test_ok = test_ok_1 and test_ok_2 and test_ok_3
+
+        self.assertTrue(test_ok,
+                        f"Error in test_clicking_At_button(self) Reason: {reasons}")
 
     def test_switching_to_settings(self):
         """
@@ -199,11 +222,12 @@ class MainActivityTest(BaseTest):
 
     def __get_word_and_labels_list(self):
         """ Auxiliary. Returns the word under the picture and UNORDERED list of labels (scattered letters) seen on the screen"""
+        """ The returned list is list of Strings eg. ['a', 'ż', 'b', 'a'] """
         word = self.ma.get_nazwa_field().text  # the Word under the picture
         labels_id_list = self.ma.get_unordered_list_of_ids_of_shown_labels(MAL.ALL_LABELS_IDS)
         labels_list = []
         for idi in labels_id_list:
-            labels_list.append(self.driver.find_element_by_id(idi))
+            labels_list.append(self.driver.find_element_by_id(idi).text)
         return word, labels_list
 
     def __move_Labels_to_places(self, labels_list, xo, spacing, ltrim, rnd_range):
